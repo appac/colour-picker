@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Picker from "./picker";
 import Slider from "./slider";
+import "./index.scss";
 
 import rgbToHex from "../../utils/rgb-to-hex";
 
@@ -13,18 +14,21 @@ export default () => {
       red,
       green,
       blue,
+      alpha,
     });
-    // Take ImageData and store it in the currentHue state. Passed to the slider.
   };
 
   const saturationChangeHandler = ({ data }) => {
     // Take ImageData and pass to utility function for conversion to HEX. Passed to the
-    rgbToHex(currentHue);
+    rgbToHex(data);
   };
 
   return (
-    <div>
-      <Picker handleSaturationChange={saturationChangeHandler} />
+    <div className="colour-picker">
+      <Picker
+        currentHue={currentHue}
+        handleSaturationChange={saturationChangeHandler}
+      />
       <Slider handleHueChange={hueChangeHandler} />
     </div>
   );
