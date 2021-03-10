@@ -33,6 +33,7 @@ const Slider = ({ handleHueChange }) => {
     handleHueChange(context.getImageData(15, pickLocation, 1, 1));
   };
 
+  // FIXME: See about setting an init value so the picker can render with a hue.
   // FIXME: Picker circle isn't being drawn. Layer/order issue with redraws?
   const drawPickerCircle = (pickLocation) => {
     redrawHueSlider();
