@@ -5,7 +5,7 @@ import "./styles.scss";
 
 import rgbToHex from "../../utils/rgb-to-hex";
 
-export default () => {
+const ColourPicker = () => {
   const [currentHue, setCurrentHue] = useState(null);
 
   const hueChangeHandler = ({ data }) => {
@@ -33,3 +33,5 @@ export default () => {
     </div>
   );
 };
+
+export default ColourPicker;

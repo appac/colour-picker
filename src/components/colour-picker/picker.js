@@ -21,7 +21,7 @@ const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
         false
       );
     };
-  }, [currentHue]);
+  });
 
   function handlePickerClick(event) {
     const context = saturationCanvas.current.getContext("2d");
