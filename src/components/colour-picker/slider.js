@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import "./slider.scss";
 
 const Slider = ({ handleHueChange }) => {
   const hueCanvas = useRef(null);

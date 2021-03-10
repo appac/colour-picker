@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Picker from "./picker";
 import Slider from "./slider";
-import "./index.scss";
+import "./styles.scss";
 
 import rgbToHex from "../../utils/rgb-to-hex";
 

@@ -1,3 +1,16 @@
+.colour-picker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.saturation-picker__canvas {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
 .hue-slider {
   display: flex;
   flex-direction: row;

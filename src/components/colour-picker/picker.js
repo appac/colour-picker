@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./picker.scss";
 
 const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
   const saturationCanvas = useRef(null);
