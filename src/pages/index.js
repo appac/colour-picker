@@ -1,7 +1,8 @@
 import * as React from "react";
+import ColourPicker from "../components/colour-picker";
 
 const IndexPage = () => {
-  return <div>Colour Picker</div>;
+  return <ColourPicker />;
 };
 
 export default IndexPage;
