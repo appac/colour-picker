@@ -56,12 +56,12 @@ const Slider = ({ handleHueChange }) => {
         className="hue-slider__control"
         type="range"
         orient="vertical"
-        min="0"
-        max="200"
+        min="1"
+        max="199"
         step="1"
         defaultValue="100"
         onChange={(e) => {
-          const pickLocation = (200 * e.target.value) / 100;
+          const pickLocation = e.target.value;
           getHueValue(pickLocation);
           drawPickerCircle(pickLocation);
         }}
