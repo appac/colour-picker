@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Slider = ({ handleHueChange }) => {
   const hueCanvas = useRef(null);
+  const [pickLocation, setPickLocation] = useState(100);
 
   useEffect(() => {
     drawHueSlider();
-  });
+    drawPickerCircle();
+    getHueValue();
+  }, []);
 
   const drawHueSlider = () => {
     const context = hueCanvas.current.getContext("2d");
@@ -27,14 +30,12 @@ const Slider = ({ handleHueChange }) => {
     drawHueSlider();
   };
 
-  const getHueValue = (pickLocation) => {
+  const getHueValue = () => {
     const context = hueCanvas.current.getContext("2d");
-    handleHueChange(context.getImageData(15, pickLocation, 1, 1));
+    handleHueChange(context.getImageData(15, pickLocation || 100, 1, 1));
   };
 
-  // FIXME: See about setting an init value so the picker can render with a hue.
-  // FIXME: Picker circle isn't being drawn. Layer/order issue with redraws?
-  const drawPickerCircle = (pickLocation) => {
+  const drawPickerCircle = () => {
     redrawHueSlider();
     const context = hueCanvas.current.getContext("2d");
     context.beginPath();
@@ -61,7 +62,7 @@ const Slider = ({ handleHueChange }) => {
         step="1"
         defaultValue="100"
         onChange={(e) => {
-          const pickLocation = e.target.value;
+          setPickLocation(e.target.value);
           getHueValue(pickLocation);
           drawPickerCircle(pickLocation);
         }}
