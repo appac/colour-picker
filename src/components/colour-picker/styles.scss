@@ -1,16 +1,15 @@
 $border: 1px solid rgba(0, 0, 0, 0.7);
 $border-radius: 4px;
 
-.max-width {
-  max-width: 300px;
+.picker-wrap {
+  max-width: 250px;
   margin: 0 auto;
 }
 
 .colour-picker {
-  @extend .max-width;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -53,7 +52,6 @@ $border-radius: 4px;
 }
 
 .hex-value {
-  @extend .max-width;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

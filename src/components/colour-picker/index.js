@@ -27,7 +27,7 @@ const ColourPicker = () => {
   };
 
   return (
-    <>
+    <div className="picker-wrap">
       <div className="colour-picker">
         <Picker
           currentHue={currentHue}
@@ -51,7 +51,7 @@ const ColourPicker = () => {
           }}
         />
       </div>
-    </>
+    </div>
   );
 };
 
