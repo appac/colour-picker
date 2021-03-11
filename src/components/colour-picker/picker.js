@@ -1,25 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
   const saturationCanvas = useRef(null);
   const [hexValue, setHexValue] = useState(null);
 
   useEffect(() => {
+    const canvas = saturationCanvas.current;
     // Draw picker...
     drawSaturationPicker();
     // ...attach click event listener
-    saturationCanvas.current.addEventListener(
-      "click",
-      handlePickerClick,
-      false
-    );
+    canvas.addEventListener("click", handlePickerClick, false);
     // ...detach event listener on re-render (stops multiple listeners being attached and fired all at once on click)
     return () => {
-      saturationCanvas.current.removeEventListener(
-        "click",
-        handlePickerClick,
-        false
-      );
+      canvas.removeEventListener("click", handlePickerClick, false);
     };
   });
 
@@ -53,7 +46,7 @@ const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
     context.closePath();
   }
 
-  const drawSaturationPicker = () => {
+  const drawSaturationPicker = useCallback(() => {
     const context = saturationCanvas.current.getContext("2d");
     const gradient = context.createLinearGradient(0, 0, 0, 200);
     context.fillStyle = gradient;
@@ -68,7 +61,7 @@ const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
       context.fillStyle = "grey";
     }
     context.fillRect(0, 0, 200, 200);
-  };
+  }, [currentHue]);
 
   const redrawSaturationPicker = () => {
     const context = saturationCanvas.current.getContext("2d");
