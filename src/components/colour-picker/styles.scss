@@ -1,10 +1,15 @@
 .colour-picker {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  max-width: 300px;
   margin: 0 auto;
+}
+
+.saturation-picker {
+  height: 200px;
+  width: 200px;
+  margin-right: 16px;
 }
 
 .saturation-picker__canvas {
