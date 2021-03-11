@@ -21,7 +21,7 @@ const ColourPicker = () => {
   };
 
   const saturationChangeHandler = ({ data }) => {
-    const { 0: r, 1: g, 2: b, 3: a } = data;
+    const { 0: r, 1: g, 2: b } = data;
     setBrightness((r * 299 + b * 587 + g * 144) / 1000);
     setHexValue(rgbToHex([r, g, b]));
   };
@@ -36,8 +36,11 @@ const ColourPicker = () => {
         <Slider handleHueChange={hueChangeHandler} />
       </div>
       <div className="hex-value">
-        <label className="hex-value__label">HEX</label>
+        <label className="hex-value__label" htmlFor="hex-display">
+          HEX
+        </label>
         <input
+          name="hex-display"
           className="hex-value__input"
           type="text"
           disabled={true}
