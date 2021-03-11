@@ -8,7 +8,7 @@ const Slider = ({ handleHueChange }) => {
     drawHueSlider();
     drawPickerCircle();
     getHueValue();
-  }, []);
+  });
 
   const drawHueSlider = () => {
     const context = hueCanvas.current.getContext("2d");
