@@ -30,6 +30,7 @@ $border-radius: 4px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .hue-slider__canvas {
@@ -45,6 +46,10 @@ $border-radius: 4px;
   transform: rotate(180deg);
   padding: 0;
   margin: 0;
+  position: absolute;
+  top: 0;
+  left: 15px;
+  opacity: 0;
 }
 
 .hex-value {

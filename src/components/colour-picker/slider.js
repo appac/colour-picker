@@ -38,6 +38,12 @@ const Slider = ({ handleHueChange }) => {
   const drawPickerCircle = () => {
     redrawHueSlider();
     const context = hueCanvas.current.getContext("2d");
+    context.lineWidth = 2;
+    context.strokeStyle = "#ffffff";
+    context.shadowColor = "rgba(0,0,0,0.25)";
+    context.shadowOffsetX = 1;
+    context.shadowOffsetY = 1;
+    context.shadowBlur = 3;
     context.beginPath();
     context.arc(15, pickLocation, 5, 0, Math.PI * 2);
     context.stroke();
