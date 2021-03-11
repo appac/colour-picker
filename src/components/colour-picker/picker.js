@@ -1,51 +1,21 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
   const saturationCanvas = useRef(null);
+  const [pickLocation, setPickLocation] = useState([100, 100]);
 
   useEffect(() => {
     const canvas = saturationCanvas.current;
-    // Draw picker...
     drawSaturationPicker();
-    // ...attach click event listener
+    drawPickerCircle();
+    getSaturationValue();
     canvas.addEventListener("click", handlePickerClick, false);
-    // ...detach event listener on re-render (stops multiple listeners being attached and fired all at once on click)
     return () => {
       canvas.removeEventListener("click", handlePickerClick, false);
     };
   });
 
-  function handlePickerClick(event) {
-    const context = saturationCanvas.current.getContext("2d");
-    const rect = saturationCanvas.current.getBoundingClientRect();
-    redrawSaturationPicker();
-    handleSaturationChange(
-      context.getImageData(
-        event.pageX - rect.left,
-        event.pageY - rect.top,
-        1,
-        1
-      )
-    );
-    context.lineWidth = 2;
-    context.strokeStyle = "#ffffff";
-    context.shadowColor = "rgba(0,0,0,0.25)";
-    context.shadowOffsetX = 1;
-    context.shadowOffsetY = 1;
-    context.shadowBlur = 3;
-    context.beginPath();
-    context.arc(
-      event.pageX - rect.left,
-      event.pageY - rect.top,
-      5,
-      0,
-      Math.PI * 2
-    );
-    context.stroke();
-    context.closePath();
-  }
-
-  const drawSaturationPicker = useCallback(() => {
+  const drawSaturationPicker = () => {
     const context = saturationCanvas.current.getContext("2d");
     const gradient = context.createLinearGradient(0, 0, 0, 200);
     context.fillStyle = gradient;
@@ -60,12 +30,39 @@ const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
       context.fillStyle = "grey";
     }
     context.fillRect(0, 0, 200, 200);
-  }, [currentHue]);
+  };
+
+  const getSaturationValue = () => {
+    const context = saturationCanvas.current.getContext("2d");
+    handleSaturationChange(context.getImageData(...pickLocation, 1, 1));
+  };
 
   const redrawSaturationPicker = () => {
     const context = saturationCanvas.current.getContext("2d");
     context.clearRect(0, 0, 30, 200);
     drawSaturationPicker();
+  };
+
+  const drawPickerCircle = () => {
+    redrawSaturationPicker();
+    const context = saturationCanvas.current.getContext("2d");
+    context.lineWidth = 2;
+    context.strokeStyle = "#ffffff";
+    context.shadowColor = "rgba(0,0,0,0.25)";
+    context.shadowOffsetX = 1;
+    context.shadowOffsetY = 1;
+    context.shadowBlur = 3;
+    context.beginPath();
+    context.arc(...pickLocation, 5, 0, Math.PI * 2);
+    context.stroke();
+    context.closePath();
+  };
+
+  const handlePickerClick = (event) => {
+    const rect = saturationCanvas.current.getBoundingClientRect();
+    setPickLocation([event.pageX - rect.left, event.pageY - rect.top]);
+    getSaturationValue();
+    drawPickerCircle();
   };
 
   return (
