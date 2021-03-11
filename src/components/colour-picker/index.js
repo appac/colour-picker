@@ -8,6 +8,7 @@ import rgbToHex from "../../utils/rgb-to-hex";
 const ColourPicker = () => {
   const [currentHue, setCurrentHue] = useState(null);
   const [hexValue, setHexValue] = useState(null);
+  const [brightness, setBrightness] = useState(125);
 
   const hueChangeHandler = ({ data }) => {
     const { 0: red, 1: green, 2: blue, 3: alpha } = data;
@@ -21,6 +22,7 @@ const ColourPicker = () => {
 
   const saturationChangeHandler = ({ data }) => {
     const { 0: r, 1: g, 2: b, 3: a } = data;
+    setBrightness((r * 299 + b * 587 + g * 144) / 1000);
     setHexValue(rgbToHex([r, g, b]));
   };
 
@@ -39,9 +41,10 @@ const ColourPicker = () => {
           className="hex-value__input"
           type="text"
           disabled={true}
-          value={hexValue}
+          value={hexValue || ""}
           style={{
             background: hexValue,
+            color: brightness > 100 ? "#000" : "#fff",
           }}
         />
       </div>
