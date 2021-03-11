@@ -7,6 +7,7 @@ import rgbToHex from "../../utils/rgb-to-hex";
 
 const ColourPicker = () => {
   const [currentHue, setCurrentHue] = useState(null);
+  const [hexValue, setHexValue] = useState(null);
 
   const hueChangeHandler = ({ data }) => {
     const { 0: red, 1: green, 2: blue, 3: alpha } = data;
@@ -24,13 +25,23 @@ const ColourPicker = () => {
   };
 
   return (
-    <div className="colour-picker">
-      <Picker
-        currentHue={currentHue}
-        handleSaturationChange={saturationChangeHandler}
-      />
-      <Slider handleHueChange={hueChangeHandler} />
-    </div>
+    <>
+      <div className="colour-picker">
+        <Picker
+          currentHue={currentHue}
+          handleSaturationChange={saturationChangeHandler}
+        />
+        <Slider handleHueChange={hueChangeHandler} />
+      </div>
+      <div className="hex-value">
+        <input
+          className="hex-value__input"
+          type="text"
+          disabled={true}
+          value={hexValue}
+        />
+      </div>
+    </>
   );
 };
 

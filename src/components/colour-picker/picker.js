@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const SaturationPicker = ({ currentHue, handleSaturationChange }) => {
   const saturationCanvas = useRef(null);
-  const [hexValue, setHexValue] = useState(null);
 
   useEffect(() => {
     const canvas = saturationCanvas.current;

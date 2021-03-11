@@ -1,9 +1,17 @@
+$border: 1px solid rgba(0, 0, 0, 0.7);
+$border-radius: 4px;
+
+.max-width {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 .colour-picker {
+  @extend .max-width;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
 }
 
 .saturation-picker {
@@ -13,7 +21,8 @@
 }
 
 .saturation-picker__canvas {
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: $border;
+  border-radius: $border-radius;
 }
 
 .hue-slider {
@@ -24,7 +33,8 @@
 }
 
 .hue-slider__canvas {
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: $border;
+  border-radius: $border-radius;
 }
 
 .hue-slider__control {
@@ -35,4 +45,18 @@
   transform: rotate(180deg);
   padding: 0;
   margin: 0;
+}
+
+.hex-value {
+  @extend .max-width;
+  margin-top: 16px;
+}
+
+.hex-value__input {
+  width: 100%;
+  height: 44px;
+  border: $border;
+  border-radius: $border-radius;
+  background: #fff;
+  color: #000;
 }
