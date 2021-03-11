@@ -34,6 +34,7 @@ const ColourPicker = () => {
         <Slider handleHueChange={hueChangeHandler} />
       </div>
       <div className="hex-value">
+        <label className="hex-value__label">HEX</label>
         <input
           className="hex-value__input"
           type="text"

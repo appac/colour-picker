@@ -49,11 +49,19 @@ $border-radius: 4px;
 
 .hex-value {
   @extend .max-width;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 16px;
 }
 
+.hex-value__label {
+  margin-right: 8px;
+}
+
 .hex-value__input {
-  width: 100%;
+  flex-grow: 1;
   height: 44px;
   border: $border;
   border-radius: $border-radius;
