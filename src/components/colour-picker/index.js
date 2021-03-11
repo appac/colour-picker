@@ -20,8 +20,8 @@ const ColourPicker = () => {
   };
 
   const saturationChangeHandler = ({ data }) => {
-    // Take ImageData and pass to utility function for conversion to HEX. Passed to the
-    rgbToHex(data);
+    const { 0: r, 1: g, 2: b, 3: a } = data;
+    setHexValue(rgbToHex([r, g, b]));
   };
 
   return (
@@ -40,6 +40,9 @@ const ColourPicker = () => {
           type="text"
           disabled={true}
           value={hexValue}
+          style={{
+            background: hexValue,
+          }}
         />
       </div>
     </>
